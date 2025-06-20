@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   web:
-    container_name: food-chatbot
     build: .
+    image: ctw1985/food-chatbot:latest
     ports:
       - "8000:8000"
     volumes:
