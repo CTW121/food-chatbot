@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from chatbot.views import chatbot
+from chatbot import views
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('', chatbot, name='chatbot'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('simulate/', views.simulate_conversation, name='simulate_conversation'),
 ]

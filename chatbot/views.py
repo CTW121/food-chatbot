@@ -5,8 +5,11 @@ from django.conf import settings
 from .models import Conversation
 import json
 import re
+import os
+from dotenv import load_dotenv
 
 # Create your views here.
+load_dotenv()
 openai.api_key = settings.OPENAI_API_KEY # Use key from  settings
 
 def chatbot(request):
@@ -51,3 +54,17 @@ def check_vegetarian(foods):
         if any(keyword in food_lower for keyword in non_veg_keywords):
             return False
     return True
+
+def simulate_conversation(request):
+    if request.method == "GET":
+        results = []
+        for i in range(100):
+            question = "What are your top 3 favorite foods?"
+            response = openai.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": question}],
+                max_tokens=100
+            )
+            answers = response.choices[0].message.content.strip()
+            results.append({"iteration": i+1, "question": question, "answer": answer})
+        return JsonResponse({"results": results})
