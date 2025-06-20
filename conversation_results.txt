@@ -1,20 +1,18 @@
 Iteration: 1
-Question: What are your top 3 favorite foods?
-Answer: 1. **Chili con Carne with Beans**: I love a hearty bowl of chili made with kidney beans, ground beef, and a flavorful mix of spices.
-   
-2. **Belgian Waffles with Fresh Berries**: There's nothing like a fluffy Belgian waffle topped with a generous serving of fresh berries and a drizzle of maple syrup.
-   
-3. **Greek Gyros with Pita**: I can never resist a traditional Greek gyro packed with seasoned meat, tzatziki sauce
+Question: What are your top 3 favorite foods? Please keep the description short and simple.
+Answer: 1. Caprese salad – featuring juicy tomatoes, fresh mozzarella, basil, olive oil, and balsamic glaze
+2. Orange chicken – a classic Chinese dish with crispy chicken coated in a sweet and tangy orange sauce
+3. Almond milk smoothie – a refreshing blend of almond milk, bananas, strawberries, and honey for a creamy and healthy treat
 ------
 Iteration: 2
-Question: What are your top 3 favorite foods?
-Answer: 1. Roasted Potatoes: I love the crispiness of roasted potatoes with a sprinkle of sea salt and herbs. 
-2. Cherry Pie: The sweet and tart combination of cherries in a buttery crust is simply irresistible. 
-3. Cabbage Rolls: I enjoy the comforting flavors of cabbage rolls filled with seasoned meat and rice, topped with tomato sauce.
+Question: What are your top 3 favorite foods? Please keep the description short and simple.
+Answer: 1. Grilled salmon with a lemon-butter sauce
+2. Pulled pork sliders with a buttery brioche bun
+3. Buttered corn on the cob
 ------
 Iteration: 3
-Question: What are your top 3 favorite foods?
-Answer: 1. Watermelon: Refreshing and hydrating, watermelon is one of my favorite fruits to enjoy during hot summer days.
-2. Cranberry sauce: I love the sweet and tangy flavor of cranberry sauce, especially when paired with roast turkey during Thanksgiving dinner.
-3. Apple pie: A classic dessert that never fails to satisfy my sweet tooth, apple pie with a flaky crust and warm cinnamon-spiced apples is always a treat.
+Question: What are your top 3 favorite foods? Please keep the description short and simple.
+Answer: 1. Gnocchi - soft, pillowy potato dumplings that are delicious when served with various sauces or toppings.
+2. Potatoes - versatile and can be prepared in countless ways, such as mashed, roasted, fried, or even made into gnocchi.
+3. Sunflower seed pesto - a delicious and nutty alternative to traditional pesto made with basil, sunflower seeds, garlic, and Parmesan cheese.
 ------

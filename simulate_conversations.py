@@ -19,7 +19,7 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def chatgpt_a_ask():
-    return "What are your top 3 favorite foods?"
+    return "What are your top 3 favorite foods? Please keep the description short and simple."
 
 def chatgpt_b_respond():
     foods = [
