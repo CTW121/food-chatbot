@@ -27,4 +27,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('simulate/', views.simulate_conversation, name='simulate_conversation'),
+    path('api/vegetarian/', views.vegetarian_users_api, name='vegetarian_users_api'),
 ]

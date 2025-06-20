@@ -2,11 +2,18 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import openai
 from django.conf import settings
-from .models import Conversation
 import json
 import re
 import os
 from dotenv import load_dotenv
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import Conversation
+from .serializers import ConversationSerializer
+
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 load_dotenv()
@@ -56,7 +63,7 @@ def check_vegetarian(foods):
     return True
 
 def simulate_conversation(request):
-    if request.method == "GET":
+    if request.method == "POST":
         results = []
         for i in range(100):
             question = "What are your top 3 favorite foods?"
@@ -68,3 +75,44 @@ def simulate_conversation(request):
             answers = response.choices[0].message.content.strip()
             results.append({"iteration": i+1, "question": question, "answer": answer})
         return JsonResponse({"results": results})
+
+@api_view(['GET'])
+def vegetarian_users_api(request):
+    # Define vegetarian/vegan foods
+    vegetarian_foods = {'tofu', 'salad', 'lentils', 'pasta', 'rice', 'vegetables', 'mango', 'kiwi', 'chia', 'bulgur', 'corn'}
+    non_vegetarian_foods = {'chicken', 'beef', 'pork', 'fish', 'meat'}
+    non_vegan_foods = {'eggs', 'dairy', 'cheese', 'milk', 'butter', 'honey', 'cream'}
+
+    conversations = Conversation.objects.all()
+    logger.info(f"Conversations: {conversations}")
+
+    vegetarian_list = []
+    vegan_list = []
+    for conv in conversations:
+        logger.info(f"Processing: {conv.bot_response}")
+        # Use OpenAI to classify
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Analyze the following list of favorite foods and determine if it is vegetarian, vegan, or neither."
+                                              "Respond only with 'vegetarian', 'vegan', or 'neither'."},
+                {"role": "user", "content": conv.bot_response}
+            ],
+            max_tokens=10
+        )
+        classification = response.choices[0].message.content.strip().lower()
+        logger.info(f"Classification for {conv.bot_response}: {classification}")
+
+        if hasattr(conv, 'is_vegetarian'):
+            conv.is_vegetarian = classification in ['vegetarian', 'vegan']
+            conv.save()
+
+        serializer = ConversationSerializer(conv)
+        data = serializer.data
+        data['classification'] = classification
+        if classification == 'vegetarian':
+            vegetarian_list.append(data)
+        elif classification == 'vegan':
+            vegan_list.append(data)
+
+    return Response({"vegetarian_users": vegetarian_list, "vegan_users": vegan_list})
