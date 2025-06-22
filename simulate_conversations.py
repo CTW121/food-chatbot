@@ -48,13 +48,13 @@ def chatgpt_b_respond():
                                           "List your top 3 favorite foods based on the suggestion."},
             {"role": "user", "content": f"Suggest: {', '.join(top_3)}"}
         ],
-        max_tokens=100
+        max_tokens=200
     )
     return response.choices[0].message.content.strip()
 
 # Simulate 100 conversations
 results = []
-for i in range(3):
+for i in range(100):
     question = chatgpt_a_ask()
     answer = chatgpt_b_respond()
     conversation = Conversation.objects.create(user_input=question, bot_response=answer)

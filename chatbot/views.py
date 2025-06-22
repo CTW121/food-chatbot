@@ -94,18 +94,18 @@ def vegetarian_users_api(request):
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Analyze the following list of favorite foods and determine if it is vegetarian, vegan, or neither."
-                                              "Respond only with 'vegetarian', 'vegan', or 'neither'."},
+                {"role": "system", "content": "Analyze the following list of favorite foods and determine if it is vegetarian, vegan, or neither. Respond strictly only 'vegetarian', 'vegan', or 'neither'."},
                 {"role": "user", "content": conv.bot_response}
             ],
-            max_tokens=10
+            max_tokens=10,
+            temperature = 0
         )
         classification = response.choices[0].message.content.strip().lower()
         logger.info(f"Classification for {conv.bot_response}: {classification}")
 
-        if hasattr(conv, 'is_vegetarian'):
-            conv.is_vegetarian = classification in ['vegetarian', 'vegan']
-            conv.save()
+        # if hasattr(conv, 'is_vegetarian'):
+        #     conv.is_vegetarian = classification in ['vegetarian', 'vegan']
+        #     conv.save()
 
         serializer = ConversationSerializer(conv)
         data = serializer.data
