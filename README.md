@@ -1,8 +1,8 @@
-# Food-Chatbot Assignment
+# Food-Chatbot
 
 Welcome to the Food-Chatbot project!
 
-This repository contains the code developed as part of a programming assignment to create a Django-based chatbot application with a focus on food preferences, including vegetarian and vegan classifications. The project includes a API endpoint, authentication, and simulation features.
+This repository creates a Django-based chatbot application with a focus on food preferences, including vegetarian and vegan classifications. The project includes a API endpoint, authentication, and simulation features.
 
 ## Project Overview
 
